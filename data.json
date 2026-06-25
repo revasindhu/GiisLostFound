@@ -1,0 +1,46 @@
+[
+  {
+    "id": "170e834b-6ea7-45f7-846e-cdfc1856b871",
+    "type": "lost",
+    "name": "Lip Balm",
+    "category": "Other",
+    "description": "Burts Bees Lip Balm",
+    "location": "",
+    "reporter": "",
+    "date": "Jun 25",
+    "image": "/uploads/27663054b5094e2893caddf5753e6f5a.jpg"
+  },
+  {
+    "id": "0c9ec185-9c52-4108-a08f-3fac13b0b3d8",
+    "type": "lost",
+    "name": "Red Water Bottle",
+    "category": "Other",
+    "description": "",
+    "location": "",
+    "reporter": "",
+    "date": "Jun 25",
+    "image": "/uploads/0a322750a1f7427eac2ca410423732b4.jpg"
+  },
+  {
+    "id": "bc2ca89d-0826-404e-a81f-cfae80191642",
+    "type": "lost",
+    "name": "Key chain",
+    "category": "Bags & Accessories",
+    "description": "Bear keychain",
+    "location": "",
+    "reporter": "",
+    "date": "Jun 25",
+    "image": "/uploads/6207b07a7af349c3a584e77dded1f8ac.jpg"
+  },
+  {
+    "id": "d25d720d-bdcc-4fba-ad84-b307b2d0d247",
+    "type": "lost",
+    "name": "Cardigan",
+    "category": "Clothing",
+    "description": "Black cardigan with buttons",
+    "location": "",
+    "reporter": "",
+    "date": "Jun 25",
+    "image": "/uploads/f4ca6c1da59845ab859995ac9900f2cf.jpg"
+  }
+]

@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lost & Found Site</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #F7F6F2;
+      --surface: #FFFFFF;
+      --accent: #4a3ce0;
+      --accent-soft: #EAE8FE;
+      --found: #22C55E;
+      --lost: #EF4444;
+      --text: #1A1A2E;
+      --muted: #6B7280;
+      --border: #E5E4E0;
+      --radius: 14px;
+      --shadow: 0 2px 14px rgba(0, 0, 0, 0.07);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    nav {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .btn {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      padding: 0.5rem 1.1rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.18s;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--muted);
+    }
+
+    .btn-ghost:hover {
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: #4a3ce0;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(91, 75, 245, 0.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid var(--border);
+      color: var(--text);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #5B4BF5 0%, #8B5CF6 100%);
+      color: white;
+      padding: 4rem 2rem 3rem;
+      text-align: center;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: 0.3rem 1rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      opacity: 0.88;
+      max-width: 480px;
+      margin: 0 auto 2rem;
+      line-height: 1.6;
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      margin-top: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      opacity: 0.75;
+      margin-top: 0.1rem;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .controls {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.75rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .search-wrap {
+      flex: 1;
+      min-width: 220px;
+      position: relative;
+    }
+
+    .search-wrap svg {
+      position: absolute;
+      left: 0.9rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+    }
+
+    .search-wrap input {
+      width: 100%;
+      padding: 0.65rem 1rem 0.65rem 2.6rem;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.92rem;
+      background: var(--surface);
+      color: var(--text);
+      transition: border 0.18s;
+      outline: none;
+    }
+
+    .search-wrap input:focus {
+      border-color: var(--accent);
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 0.4rem;
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 0.3rem;
+    }
+
+    .tab {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.4rem 1rem;
+      border-radius: 7px;
+      border: none;
+      cursor: pointer;
+      background: transparent;
+      color: var(--muted);
+      transition: all 0.18s;
+    }
+
+    .tab.active {
+      background: var(--accent);
+      color: white;
+    }
+
+    .tab:hover:not(.active) {
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    select.filter-select {
+      padding: 0.65rem 1rem;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.88rem;
+      background: var(--surface);
+      color: var(--text);
+      outline: none;
+      cursor: pointer;
+    }
+
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    .items-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 3rem;
+    }
+
+    .item-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      border: 1.5px solid var(--border);
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    .item-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+
+    .item-img {
+      width: 100%;
+      height: 160px;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .item-body {
+      padding: 1rem;
+    }
+
+    .item-badges {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.2rem 0.65rem;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .badge-lost {
+      background: #FEE2E2;
+      color: var(--lost);
+    }
+
+    .badge-found {
+      background: #DCFCE7;
+      color: var(--found);
+    }
+
+    .badge-cat {
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    .item-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .item-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 0.75rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .item-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .item-meta strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+      animation: fadeIn 0.2s;
+    }
+
+    .modal {
+      background: var(--surface);
+      border-radius: 18px;
+      width: 100%;
+      max-width: 520px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 2rem;
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: var(--bg);
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      transition: background 0.15s;
+    }
+
+    .modal-close:hover {
+      background: var(--border);
+    }
+
+    .modal h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-row {
+      margin-bottom: 1.1rem;
+    }
+
+    .form-row label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      color: var(--text);
+    }
+
+    .form-row input,
+    .form-row textarea,
+    .form-row select {
+      width: 100%;
+      padding: 0.65rem 0.9rem;
+      border: 1.5px solid var(--border);
+      border-radius: 9px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      color: var(--text);
+      background: var(--bg);
+      outline: none;
+      transition: border 0.18s;
+    }
+
+    .form-row input:focus,
+    .form-row textarea:focus,
+    .form-row select:focus {
+      border-color: var(--accent);
+      background: white;
+    }
+
+    .form-row textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    .type-toggle {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .type-btn {
+      flex: 1;
+      padding: 0.65rem;
+      border-radius: 9px;
+      border: 1.5px solid var(--border);
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      background: var(--bg);
+      transition: all 0.18s;
+    }
+
+    .type-btn.sel-lost {
+      border-color: var(--lost);
+      background: #FEE2E2;
+      color: var(--lost);
+    }
+
+    .type-btn.sel-found {
+      border-color: var(--found);
+      background: #DCFCE7;
+      color: var(--found);
+    }
+
+    .form-actions {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+      justify-content: flex-end;
+    }
+
+    .upload-box {
+    width: 100%;
+    min-height: 140px;
+    border: 2px dashed var(--border);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: border-color 0.18s, background 0.18s;
+    text-align: center;
+    background: var(--bg);
+    padding: 10px;
+}
+
+    .upload-box:hover {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    .upload-box.has-img {
+      border-style: solid;
+      border-color: var(--accent);
+    }
+
+    .claim-modal-img {
+      width: 100%;
+      height: 300px;
+      background: var(--bg);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      margin-bottom: 1.25rem;
+      overflow: hidden;
+    }
+
+    .claim-modal-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .detail-row {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 0.9rem;
+      align-items: flex-start;
+      font-size: 0.88rem;
+    }
+
+    .detail-row .dl {
+      color: var(--muted);
+      font-weight: 500;
+      width: 90px;
+      flex-shrink: 0;
+    }
+
+    .detail-row .dv {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 1.25rem 0;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background: var(--text);
+      color: white;
+      padding: 0.75rem 1.25rem;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      z-index: 999;
+      display: none;
+      animation: slideUp 0.3s ease;
+    }
+
+    .toast.show {
+      display: block;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: var(--muted);
+      grid-column: 1 / -1;
+    }
+
+    .empty-state .icon {
+      font-size: 3rem;
+      margin-bottom: 0.75rem;
+    }
+
+    @media (max-width: 600px) {
+      .hero {
+        padding: 2.5rem 1rem 2rem;
+      }
+
+      .controls {
+        flex-direction: column;
+      }
+
+      .filter-tabs {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="nav-logo"><span>🔍</span> Lost &amp; Found Hub</div>
+    <div class="nav-actions">
+      <button class="btn btn-ghost" onclick="openPost()">Post Item</button>
+      <button class="btn btn-primary" onclick="openPost()">+ Report</button>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-tag">📍 Global Indian International School</div>
+    <h1>Lost something?<br>We'll help you find it.</h1>
+    <p>Browse items reported around school, post what you've lost or found, and reconnect people with their stuff.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <button class="btn"
+        style="background:white;color:var(--accent);font-family:'Space Grotesk',sans-serif;font-weight:700;"
+        onclick="openPost('lost')">Lost Box Item</button>
+      <button class="btn"
+        style="background:rgba(255,255,255,0.15);color:white;border:1.5px solid rgba(255,255,255,0.4);font-family:'Space Grotesk',sans-serif;font-weight:700;"
+        onclick="openPost('found')">I Found Something</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num" id="stat-total">0</div>
+        <div class="stat-label">Total Items</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num" id="stat-lost">0</div>
+        <div class="stat-label">Lost</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num" id="stat-found">0</div>
+        <div class="stat-label">Found</div>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <div class="controls">
+      <div class="search-wrap">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8" />
+          <path d="m21 21-4.35-4.35" />
+        </svg>
+        <input type="text" id="search-input" placeholder="Search items, locations…" oninput="loadItems()" />
+      </div>
+      <div class="filter-tabs">
+        <button class="tab active" onclick="setFilter('all',this)">All</button>
+        <button class="tab" onclick="setFilter('lost',this)">Lost Box Items</button>
+        <button class="tab" onclick="setFilter('found',this)">Found</button>
+      </div>
+      <select class="filter-select" id="cat-filter" onchange="loadItems()">
+        <option value="">All Categories</option>
+        <option>Electronics</option>
+        <option>Clothing</option>
+        <option>Books & Stationery</option>
+        <option>Bags & Accessories</option>
+        <option>Sports Equipment</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div class="section-title" id="results-label">All Items</div>
+    <div class="items-grid" id="items-grid">
+      <div class="empty-state">
+        <div class="icon">⏳</div>
+        <p>Loading items…</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- POST MODAL -->
+  <div class="modal-overlay" id="post-modal">
+    <div class="modal">
+      <button class="modal-close" onclick="closePost()">✕</button>
+      <h2>Report an Item</h2>
+      <div class="form-row">
+        <label>Type</label>
+        <div class="type-toggle">
+          <button class="type-btn sel-lost" id="type-lost" onclick="selectType('lost')">🔴 Lost and Box Item</button>
+          <button class="type-btn" id="type-found" onclick="selectType('found')">🟢 I Found It</button>
+        </div>
+      </div>
+      <div class="form-row">
+        <label>Item Name *</label>
+        <input type="text" id="f-name" placeholder="e.g. Blue water bottle" />
+      </div>
+      <div class="form-row">
+        <label>Category</label>
+        <select id="f-cat">
+          <option>Electronics</option>
+          <option>Clothing</option>
+          <option>Books & Stationery</option>
+          <option>Bags & Accessories</option>
+          <option>Sports Equipment</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label>Description</label>
+        <textarea id="f-desc" placeholder="Color, brand, any special marks…"></textarea>
+      </div>
+      <div class="form-row">
+        <label>Location</label>
+        <input type="text" id="f-loc" placeholder="e.g. Library, Auditorium, Room 204" />
+      </div>
+      <div class="form-row">
+        <label>Your Name</label>
+        <input type="text" id="f-reporter" placeholder="Your first name or nickname" />
+      </div>
+      <div class="form-row">
+        <label>Photo (optional)</label>
+        <div class="upload-box" id="upload-box" onclick="document.getElementById('f-img').click()">
+          <div id="upload-placeholder" style="display:flex;flex-direction:column;align-items:center;">
+            <div style="font-size:2rem;">📷</div>
+            <div style="font-size:0.85rem;color:var(--muted);margin-top:0.4rem;">Click to upload a photo</div>
+            <div style="font-size:0.75rem;color:var(--muted);margin-top:0.2rem;">JPG, PNG, GIF — max 10MB</div>
+          </div>
+          <img id="upload-preview" src="" alt="Preview"
+            style="display:none;width:100%;height:100%;object-fit:cover;border-radius:9px;" />
+        </div>
+        <input type="file" id="f-img" accept="image/*" style="display:none;" onchange="handleImageUpload(event)" />
+        <button type="button" id="remove-img-btn" onclick="removeImage()"
+          style="display:none;margin-top:0.4rem;font-size:0.78rem;color:var(--lost);background:none;border:none;cursor:pointer;">✕
+          Remove photo</button>
+      </div>
+      <div class="form-actions">
+        <button class="btn btn-outline" onclick="closePost()">Cancel</button>
+        <button class="btn btn-primary" id="submit-btn" onclick="submitPost()">Post Item</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLAIM MODAL -->
+  <div class="modal-overlay" id="claim-modal">
+    <div class="modal">
+      <button class="modal-close" onclick="closeClaim()">✕</button>
+      <h2>Item Details</h2>
+      <div class="claim-modal-img" id="claim-img"></div>
+      <div id="claim-details"></div>
+      <hr class="divider" />
+      <h2 style="font-size:1.1rem;margin-bottom:1rem;">Contact to Claim</h2>
+      <div class="form-row"><label>Your Name *</label><input type="text" id="c-name" placeholder="Full name" /></div>
+      <div class="form-row"><label>Your Class / Grade</label><input type="text" id="c-class"
+          placeholder="e.g. Grade 9 – Section B" /></div>
+      <div class="form-row"><label>Message (optional)</label><textarea id="c-msg"
+          placeholder="Describe how you can prove it's yours…" style="min-height:70px;"></textarea></div>
+      <div class="form-actions">
+        <button class="btn btn-outline" onclick="closeClaim()">Close</button>
+        <button class="btn btn-primary" onclick="submitClaim()">Send Claim</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const EMOJIS = { 'Electronics': '📱', 'Clothing': '👕', 'Books & Stationery': '📚', 'Bags & Accessories': '🎒', 'Sports Equipment': '⚽', 'Other': '🔍' };
+    let currentFilter = 'all';
+    let allItems = [];
+    let claimingItem = null;
+    let postType = 'Lost';
+    let currentImageFile = null;
+
+    // ── LOAD ITEMS FROM SERVER ──────────────────────────────
+    async function loadItems() {
+      const query = document.getElementById('search-input').value;
+      const cat = document.getElementById('cat-filter').value;
+      const params = new URLSearchParams();
+      if (currentFilter !== 'all') params.set('type', currentFilter);
+      if (cat) params.set('category', cat);
+      if (query) params.set('q', query);
+
+      const res = await fetch('/api/items?' + params);
+      allItems = await res.json();
+      renderItems(allItems);
+    }
+
+    function renderItems(items) {
+      document.getElementById('stat-total').textContent = allItems.length;
+      document.getElementById('stat-lost').textContent = allItems.filter(i => i.type === 'lost').length;
+      document.getElementById('stat-found').textContent = allItems.filter(i => i.type === 'found').length;
+
+      const label = document.getElementById('results-label');
+      const cat = document.getElementById('cat-filter').value;
+      label.textContent = `${items.length} item${items.length !== 1 ? 's' : ''} — ${currentFilter === 'all' ? 'All' : currentFilter.charAt(0).toUpperCase() + currentFilter.slice(1)}${cat ? ` · ${cat}` : ''}`;
+
+      const grid = document.getElementById('items-grid');
+      if (!items.length) {
+        grid.innerHTML = `<div class="empty-state"><div class="icon">🔎</div><p>No items match your search.<br>Try a different keyword or filter.</p></div>`;
+        return;
+      }
+      grid.innerHTML = items.map(item => `
+      <div class="item-card" onclick='openClaim(${JSON.stringify(item)})'>
+        <div class="item-img" style="${item.image ? `background-image:url('${item.image}');background-size:cover;background-position:center;` : ''}">${item.image ? '' : (EMOJIS[item.category] || '🔍')}</div>
+        <div class="item-body">
+          <div class="item-badges">
+            <span class="badge badge-${item.type}">${item.type}</span>
+            <span class="badge badge-cat">${item.category}</span>
+          </div>
+          <div class="item-title">${item.name}</div>
+          <div class="item-desc">${item.description}</div>
+          <div class="item-meta"><span>📍 <strong>${item.location}</strong></span><span>${item.date}</span></div>
+        </div>
+      </div>`).join('');
+    }
+
+    function setFilter(f, el) {
+      currentFilter = f;
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      el.classList.add('active');
+      loadItems();
+    }
+
+    // ── POST ────────────────────────────────────────────────
+    function openPost(type) {
+      selectType(type || 'lost');
+      ['f-name', 'f-desc', 'f-loc', 'f-reporter'].forEach(id => document.getElementById(id).value = '');
+      removeImage();
+      document.getElementById('post-modal').classList.add('open');
+    }
+    function closePost() { document.getElementById('post-modal').classList.remove('open'); }
+    function selectType(t) {
+      postType = t;
+      document.getElementById('type-lost').className = 'type-btn' + (t === 'lost' ? ' sel-lost' : '');
+      document.getElementById('type-found').className = 'type-btn' + (t === 'found' ? ' sel-found' : '');
+    }
+
+    function handleImageUpload(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      if (file.size > 10 * 1024 * 1024) { showToast('Image too large. Max 10MB.'); return; }
+      currentImageFile = file;
+      const reader = new FileReader();
+      reader.onload = e => {
+        const preview = document.getElementById('upload-preview');
+        preview.src = e.target.result;
+        preview.style.display = 'block';
+        document.getElementById('upload-placeholder').style.display = 'none';
+        document.getElementById('upload-box').classList.add('has-img');
+        document.getElementById('remove-img-btn').style.display = 'inline-block';
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function removeImage() {
+      currentImageFile = null;
+      document.getElementById('upload-preview').style.display = 'none';
+      document.getElementById('upload-preview').src = '';
+      document.getElementById('upload-placeholder').style.display = 'flex';
+      document.getElementById('upload-box').classList.remove('has-img');
+      document.getElementById('remove-img-btn').style.display = 'none';
+      document.getElementById('f-img').value = '';
+    }
+
+    async function submitPost() {
+      const name = document.getElementById('f-name').value.trim();
+      if (!name) { showToast('Please enter an item name.'); return; }
+
+      const btn = document.getElementById('submit-btn');
+      btn.textContent = 'Posting…';
+      btn.disabled = true;
+
+      const formData = new FormData();
+      formData.append('type', postType);
+      formData.append('name', name);
+      formData.append('category', document.getElementById('f-cat').value);
+      formData.append('description', document.getElementById('f-desc').value.trim());
+      formData.append('location', document.getElementById('f-loc').value.trim());
+      formData.append('reporter', document.getElementById('f-reporter').value.trim());
+      if (currentImageFile) formData.append('image', currentImageFile);
+
+      const res = await fetch('/api/items', { method: 'POST', body: formData });
+      btn.textContent = 'Post Item';
+      btn.disabled = false;
+
+      if (res.ok) {
+        closePost();
+        loadItems();
+        showToast('✅ Item posted and saved!');
+      } else {
+        showToast('Something went wrong. Try again.');
+      }
+    }
+
+    // ── CLAIM ───────────────────────────────────────────────
+    function openClaim(item) {
+      claimingItem = item;
+      const imgEl = document.getElementById('claim-img');
+      imgEl.innerHTML = item.image
+        ? `<img src="${item.image}" alt="${item.name}"/>`
+        : (EMOJIS[item.category] || '🔍');
+
+      document.getElementById('claim-details').innerHTML = `
+      <div class="item-badges" style="margin-bottom:0.75rem;">
+        <span class="badge badge-${item.type}">${item.type}</span>
+        <span class="badge badge-cat">${item.category}</span>
+      </div>
+      <h3 style="font-family:'Space Grotesk',sans-serif;font-size:1.2rem;font-weight:700;margin-bottom:1rem;">${item.name}</h3>
+      <div class="detail-row"><span class="dl">Description</span><span class="dv">${item.description}</span></div>
+      <div class="detail-row"><span class="dl">Location</span><span class="dv">📍 ${item.location}</span></div>
+      <div class="detail-row"><span class="dl">Reported by</span><span class="dv">${item.reporter}</span></div>
+      <div class="detail-row"><span class="dl">Date</span><span class="dv">${item.date}</span></div>`;
+      ['c-name', 'c-class', 'c-msg'].forEach(id => document.getElementById(id).value = '');
+      document.getElementById('claim-modal').classList.add('open');
+    }
+    function closeClaim() { document.getElementById('claim-modal').classList.remove('open'); }
+
+    async function submitClaim() {
+      const name = document.getElementById('c-name').value.trim();
+      if (!name) { showToast('Please enter your name.'); return; }
+      const res = await fetch('/api/claim', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ item_id: claimingItem.id, name, grade: document.getElementById('c-class').value, message: document.getElementById('c-msg').value })
+      });
+      const data = await res.json();
+      closeClaim();
+      showToast('📬 ' + data.message);
+    }
+
+    // ── TOAST ───────────────────────────────────────────────
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 3000);
+    }
+
+    document.getElementById('post-modal').addEventListener('click', e => { if (e.target === e.currentTarget) closePost(); });
+    document.getElementById('claim-modal').addEventListener('click', e => { if (e.target === e.currentTarget) closeClaim(); });
+
+    loadItems();
+  </script>
+</body>
+
+</html>
