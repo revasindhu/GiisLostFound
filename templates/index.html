@@ -19,12 +19,12 @@
 
     :root {
       --bg: #F7F6F2;
-      --surface: #FFFFFF;
-      --accent: #4a3ce0;
-      --accent-soft: #EAE8FE;
-      --found: #22C55E;
-      --lost: #EF4444;
-      --text: #1A1A2E;
+      --surface: hsl(0, 0%, 100%);
+      --accent: #356959;
+      --accent-soft: #a1ffaa83;
+      --found: #356959;
+      --lost: #cc4646;
+      --text: #333730;
       --muted: #6B7280;
       --border: #E5E4E0;
       --radius: 14px;
@@ -94,9 +94,9 @@
     }
 
     .btn-primary:hover {
-      background: #4a3ce0;
+      background: #7fb285;
       transform: translateY(-1px);
-      box-shadow: 0 4px 14px rgba(91, 75, 245, 0.35);
+      box-shadow: 0 4px 14px rgba(57, 114, 63, 1);
     }
 
     .btn-outline {
@@ -111,7 +111,7 @@
     }
 
     .hero {
-      background: linear-gradient(135deg, #5B4BF5 0%, #8B5CF6 100%);
+      background: #356959;
       color: white;
       padding: 4rem 2rem 3rem;
       text-align: center;
@@ -362,6 +362,7 @@
       margin-bottom: 0.75rem;
       display: -webkit-box;
       -webkit-line-clamp: 2;
+      line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
@@ -644,7 +645,7 @@
 <body>
 
   <nav>
-    <div class="nav-logo"><span>🔍</span> Lost &amp; Found Hub</div>
+    <div class="nav-logo"><span></span> Lost &amp; Found Hub</div>
     <div class="nav-actions">
       <button class="btn btn-ghost" onclick="openPost()">Post Item</button>
       <button class="btn btn-primary" onclick="openPost()">+ Report</button>
@@ -652,9 +653,9 @@
   </nav>
 
   <div class="hero">
-    <div class="hero-tag">📍 Global Indian International School</div>
+    <div class="hero-tag">Global Indian International School</div>
     <h1>Lost something?<br>We'll help you find it.</h1>
-    <p>Browse items reported around school, post what you've lost or found, and reconnect people with their stuff.</p>
+    <p>Browse items in the Lost and Found Box, post what you've found, and help others find their lost items.</p>
     <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
       <button class="btn"
         style="background:white;color:var(--accent);font-family:'Space Grotesk',sans-serif;font-weight:700;"
@@ -706,7 +707,7 @@
     <div class="section-title" id="results-label">All Items</div>
     <div class="items-grid" id="items-grid">
       <div class="empty-state">
-        <div class="icon">⏳</div>
+        <div class="icon"></div>
         <p>Loading items…</p>
       </div>
     </div>
@@ -720,8 +721,8 @@
       <div class="form-row">
         <label>Type</label>
         <div class="type-toggle">
-          <button class="type-btn sel-lost" id="type-lost" onclick="selectType('lost')">🔴 Lost and Box Item</button>
-          <button class="type-btn" id="type-found" onclick="selectType('found')">🟢 I Found It</button>
+          <button class="type-btn sel-lost" id="type-lost" onclick="selectType('lost')">Lost and Box Item</button>
+          <button class="type-btn" id="type-found" onclick="selectType('found')">I Found It</button>
         </div>
       </div>
       <div class="form-row">
@@ -736,7 +737,7 @@
           <option>Books & Stationery</option>
           <option>Bags & Accessories</option>
           <option>Utility Items</option>
-          <option>Other</option>
+          <option>Others</option>
         </select>
       </div>
       <div class="form-row">
@@ -745,11 +746,11 @@
       </div>
       <div class="form-row">
         <label>Location</label>
-        <input type="text" id="f-loc" placeholder="e.g. Library, Auditorium, Room 204" />
+        <input type="text" id="f-loc" placeholder="e.g. Library, Auditorium, 6B" />
       </div>
       <div class="form-row">
         <label>Your Name</label>
-        <input type="text" id="f-reporter" placeholder="Your first name or nickname" />
+        <input type="text" id="f-reporter" placeholder="Your first name" />
       </div>
       <div class="form-row">
         <label>Photo (optional)</label>
@@ -784,8 +785,8 @@
       <hr class="divider" />
       <h2 style="font-size:1.1rem;margin-bottom:1rem;">Contact to Claim</h2>
       <div class="form-row"><label>Your Name *</label><input type="text" id="c-name" placeholder="Full name" /></div>
-      <div class="form-row"><label>Your Class / Grade</label><input type="text" id="c-class"
-          placeholder="e.g. Grade 9 – Section B" /></div>
+      <div class="form-row"><label>Your Class / Grade *</label><input type="text" id="c-class"
+          placeholder="e.g. Grade 9B" /></div>
       <div class="form-row"><label>Message (optional)</label><textarea id="c-msg"
           placeholder="Describe how you can prove it's yours…" style="min-height:70px;"></textarea></div>
       <div class="form-actions">

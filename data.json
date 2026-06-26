@@ -1,5 +1,49 @@
 [
   {
+    "id": "61673275-c84b-4189-9050-d6af21bfb0c8",
+    "type": "lost",
+    "name": "Yellow Snack Box",
+    "category": "Utility Items",
+    "description": "Aluminium box with polka dot designed lid",
+    "location": "",
+    "reporter": "",
+    "date": "Jun 26",
+    "image": "/uploads/fb763eed6cf244d5805e3f3a4118992c.jpg"
+  },
+  {
+    "id": "5e58ffd2-d032-41ea-9340-61d77e05c63d",
+    "type": "lost",
+    "name": "Sports Jacket",
+    "category": "Electronics",
+    "description": "Red and grey designs on its side",
+    "location": "",
+    "reporter": "",
+    "date": "Jun 26",
+    "image": "/uploads/c01b943d194744c98edc9bec1ada8a29.jpg"
+  },
+  {
+    "id": "bdb4c683-821e-4c91-9fa8-57c92d879d16",
+    "type": "lost",
+    "name": "GIIS Jacket",
+    "category": "Clothing",
+    "description": "",
+    "location": "",
+    "reporter": "",
+    "date": "Jun 26",
+    "image": "/uploads/2ecca3b0c93143889aefa368e01193c7.jpg"
+  },
+  {
+    "id": "f3b315f2-68e0-47c9-b3e7-3b1602e8f38a",
+    "type": "lost",
+    "name": "Red Water Bottle",
+    "category": "Utility Items",
+    "description": "",
+    "location": "",
+    "reporter": "",
+    "date": "Jun 26",
+    "image": "/uploads/ee5d41c7826f487bb999eb0bfd2e31bf.jpg"
+  },
+  {
     "id": "1907a583-4538-4ec5-b4b9-a7c0c24a426e",
     "type": "lost",
     "name": "Black Water Bottle",
