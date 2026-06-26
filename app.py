@@ -13,6 +13,7 @@ UPLOAD_FOLDER = os.path.join(BASE_DIR, 'static', 'uploads')
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'webp'}
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 # ── HELPERS ───────────────────────────────────────────────────────────────────
 
@@ -82,6 +83,8 @@ def post_item():
     if 'image' in request.files:
         file = request.files['image']
         if file and file.filename:
+            if not allowed_file(file.filename):
+                return jsonify({'error': 'Unsupported image format.'}), 400
             image_url = save_image(file)
 
     item = {
@@ -133,6 +136,4 @@ def claim_item():
 # ── RUN ───────────────────────────────────────────────────────────────────────
 
 if __name__ == '__main__':
-    os.makedirs(UPLOAD_FOLDER, exist_ok=True)
-    print("🔍 Lost & Found server running at http://localhost:5000")
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=False)
