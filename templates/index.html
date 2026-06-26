@@ -951,18 +951,35 @@
     function closeClaim() { document.getElementById('claim-modal').classList.remove('open'); }
 
     async function submitClaim() {
-      const name = document.getElementById('c-name').value.trim();
-      if (!name) { showToast('Please enter your name.'); return; }
-      const res = await fetch('/api/claim', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ item_id: claimingItem.id, name, grade: document.getElementById('c-class').value, message: document.getElementById('c-msg').value })
-      });
-      const data = await res.json();
-      closeClaim();
-      showToast('📬 ' + data.message);
-    }
+        const name = document.getElementById('c-name').value.trim();
+        const grade = document.getElementById('c-class').value.trim();
+        const message = document.getElementById('c-msg').value.trim();
 
+        if (!name) {
+          showToast('Please enter your name.');
+          return;
+        }
+
+        if (!grade) {
+          showToast('Please enter your class/grade.');
+          return;
+        }
+
+        const res = await fetch('/api/claim', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            item_id: claimingItem.id,
+            name,
+            grade,
+            message
+          })
+        });
+
+        const data = await res.json();
+        closeClaim();
+        showToast(data.message);
+      }
     // ── TOAST ───────────────────────────────────────────────
     function showToast(msg) {
       const t = document.getElementById('toast');
