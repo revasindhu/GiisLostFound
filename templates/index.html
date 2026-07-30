@@ -649,6 +649,7 @@
 
 <body>
 
+  <nav></nav>
   <div class="nav-logo">
     <img src="{{ url_for('static', filename='images/logo.png') }}" alt="School Logo" class="school-logo">
   
@@ -730,7 +731,7 @@
       <div class="form-row">
         <label>Type</label>
         <div class="type-toggle">
-          <button class="type-btn sel-lost" id="type-lost" onclick="selectType('lost')">Lost and Box Item</button>
+          <button class="type-btn sel-lost" id="type-lost" onclick="selectType('lost')">Lost Box Item</button>
           <button class="type-btn" id="type-found" onclick="selectType('found')">I Found It</button>
         </div>
       </div>
