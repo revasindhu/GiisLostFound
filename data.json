@@ -8,7 +8,9 @@
     "location": "",
     "reporter": "",
     "date": "Jun 26",
-    "image": "/uploads/fb763eed6cf244d5805e3f3a4118992c.jpg"
+    "image": "/uploads/fb763eed6cf244d5805e3f3a4118992c.jpg",
+    "status": "available",
+    "claims": []
   },
   {
     "id": "5e58ffd2-d032-41ea-9340-61d77e05c63d",
@@ -19,8 +21,9 @@
     "location": "",
     "reporter": "",
     "date": "Jun 26",
-    "image": "/uploads/c01b943d194744c98edc9bec1ada8a29.jpg"
-  
+    "image": "/uploads/c01b943d194744c98edc9bec1ada8a29.jpg",
+    "status": "available",
+    "claims": []
   },
   {
     "id": "bdb4c683-821e-4c91-9fa8-57c92d879d16",
@@ -31,7 +34,9 @@
     "location": "",
     "reporter": "",
     "date": "Jun 26",
-    "image": "/uploads/2ecca3b0c93143889aefa368e01193c7.jpg"
+    "image": "/uploads/2ecca3b0c93143889aefa368e01193c7.jpg",
+    "status": "available",
+    "claims": []
   },
   {
     "id": "f3b315f2-68e0-47c9-b3e7-3b1602e8f38a",
@@ -42,7 +47,9 @@
     "location": "",
     "reporter": "",
     "date": "Jun 26",
-    "image": "/uploads/ee5d41c7826f487bb999eb0bfd2e31bf.jpg"
+    "image": "/uploads/ee5d41c7826f487bb999eb0bfd2e31bf.jpg",
+    "status": "available",
+    "claims": []
   },
   {
     "id": "1907a583-4538-4ec5-b4b9-a7c0c24a426e",
@@ -53,7 +60,9 @@
     "location": "",
     "reporter": "",
     "date": "Jun 26",
-    "image": "/uploads/bb1a8252fa3148b384de91290b7f8ae4.jpg"
+    "image": "/uploads/bb1a8252fa3148b384de91290b7f8ae4.jpg",
+    "status": "available",
+    "claims": []
   },
   {
     "id": "34e7e44e-7d44-4cf0-9e08-dca30ff606c4",
@@ -64,7 +73,9 @@
     "location": "",
     "reporter": "",
     "date": "Jun 26",
-    "image": "/uploads/70264e4e42ea4a77aca316f52c59f01e.jpg"
+    "image": "/uploads/70264e4e42ea4a77aca316f52c59f01e.jpg",
+    "status": "available",
+    "claims": []
   },
   {
     "id": "170e834b-6ea7-45f7-846e-cdfc1856b871",
@@ -75,7 +86,9 @@
     "location": "",
     "reporter": "",
     "date": "Jun 25",
-    "image": "/uploads/27663054b5094e2893caddf5753e6f5a.jpg"
+    "image": "/uploads/27663054b5094e2893caddf5753e6f5a.jpg",
+    "status": "available",
+    "claims": []
   },
   {
     "id": "bc2ca89d-0826-404e-a81f-cfae80191642",
@@ -86,7 +99,9 @@
     "location": "",
     "reporter": "",
     "date": "Jun 25",
-    "image": "/uploads/6207b07a7af349c3a584e77dded1f8ac.jpg"
+    "image": "/uploads/6207b07a7af349c3a584e77dded1f8ac.jpg",
+    "status": "available",
+    "claims": []
   },
   {
     "id": "d25d720d-bdcc-4fba-ad84-b307b2d0d247",
@@ -97,6 +112,8 @@
     "location": "",
     "reporter": "",
     "date": "Jun 25",
-    "image": "/uploads/f4ca6c1da59845ab859995ac9900f2cf.jpg"
+    "image": "/uploads/f4ca6c1da59845ab859995ac9900f2cf.jpg",
+    "status": "available",
+    "claims": []
   }
 ]
