@@ -9,7 +9,7 @@
     "reporter": "XYZ",
     "date": "Jul 31",
     "image": "/uploads/7321eeeb0d0245a5b57046d6a4a3164d.jpg",
-    "status": "available",
+    "status": "returned",
     "claims": [
       {
         "id": "bdd333fa-792d-4bea-ab5b-3d7407a8d78f",
@@ -18,7 +18,9 @@
         "message": "",
         "date": "Jul 31 2026"
       }
-    ]
+    ],
+    "returned_to": "Reva",
+    "returned_at": "Jul 31 2026"
   },
   {
     "id": "61673275-c84b-4189-9050-d6af21bfb0c8",
