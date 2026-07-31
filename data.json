@@ -85,7 +85,15 @@
     "date": "Jun 26",
     "image": "/uploads/70264e4e42ea4a77aca316f52c59f01e.jpg",
     "status": "available",
-    "claims": []
+    "claims": [
+      {
+        "id": "0398832c-fb36-4937-a527-eff184009b2b",
+        "claimer": "Lakshan Senthil Kumar",
+        "grade": "9A",
+        "message": "",
+        "date": "Jul 31 2026"
+      }
+    ]
   },
   {
     "id": "170e834b-6ea7-45f7-846e-cdfc1856b871",
