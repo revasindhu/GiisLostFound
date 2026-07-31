@@ -36,7 +36,15 @@
     "date": "Jun 26",
     "image": "/uploads/2ecca3b0c93143889aefa368e01193c7.jpg",
     "status": "available",
-    "claims": []
+    "claims": [
+      {
+        "id": "c979e634-a190-4f10-8ae6-b9af5865d712",
+        "claimer": "Pavitra Kosuri",
+        "grade": "9C",
+        "message": "Black mark on the inner tag",
+        "date": "Jul 31 2026"
+      }
+    ]
   },
   {
     "id": "f3b315f2-68e0-47c9-b3e7-3b1602e8f38a",
