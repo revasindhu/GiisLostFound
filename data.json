@@ -1,5 +1,18 @@
 [
   {
+    "id": "ffdedf05-bf40-4141-9766-5ec777d17fb2",
+    "type": "lost",
+    "name": "Water Bottle",
+    "category": "Other",
+    "description": "Blue",
+    "location": "10A",
+    "reporter": "XYZ",
+    "date": "Jul 31",
+    "image": "/uploads/7321eeeb0d0245a5b57046d6a4a3164d.jpg",
+    "status": "pending",
+    "claims": []
+  },
+  {
     "id": "61673275-c84b-4189-9050-d6af21bfb0c8",
     "type": "lost",
     "name": "Yellow Snack Box",
